@@ -1,0 +1,14 @@
+/* FIXME */
+.navbar {
+    position: sticky;
+    /* position: -webkit-sticky; */
+    top: 10px;
+
+    width: 100%;
+    height: 60px;
+    left: 0;
+}
+
+/* .navbarHeader {
+    top: 100;
+} */

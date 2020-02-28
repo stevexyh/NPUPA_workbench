@@ -1,0 +1,21 @@
+{% extends 'downloader/base.html' %}
+{% load static %}
+
+{% block css %}{% static 'downloader/css/upload.css' %}{% endblock css %}
+{% block title %}NPUPA资源·上传{% endblock title %}
+{% block headerName %}Upload{% endblock headerName %}
+{% block main %}
+	<br><br>
+	<section class="jumbotron text-center">
+		<div class="container">
+			<h1>NPUPA Uploads</h1>
+			<p class="lead text-muted">在此上传文件到服务器.</p>
+			<p>
+				<a href="{% url 'downloader:upload' %}" class="btn btn-primary my-2"
+					>上传文件</a
+				>
+			</p>
+		</div>
+	</section>
+
+{% endblock main %}
