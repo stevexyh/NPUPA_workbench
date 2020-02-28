@@ -1,0 +1,127 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <meta name="description" content="" />
+        <meta
+            name="author"
+            content="Mark Otto, Jacob Thornton, and Bootstrap contributors"
+        />
+        <meta name="generator" content="Jekyll v3.8.6" />
+        <title>{% block title %}NPUPA Downloads{% endblock title %}</title>
+
+        <link rel="shortcut icon" href="{% static 'downloader/icons/logo-PA_b@300x300.png' %}">
+
+        <!-- Bootstrap core CSS -->
+        <link
+            href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+
+        <!-- Favicons -->
+        {% comment %} <style>
+            .bd-placeholder-img {
+                font-size: 1.125rem;
+                text-anchor: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+
+            @media (min-width: 768px) {
+                .bd-placeholder-img-lg {
+                    font-size: 3.5rem;
+                }
+            }
+        </style> {% endcomment %}
+
+        <!-- Custom styles for this template -->
+        <link rel="stylesheet" href="{% static 'downloader/css/base.css' %}">
+        <link rel="stylesheet" href="{% block css %}{% endblock css %}">
+    </head>
+    <body>
+        <header>
+            <div class="collapse bg-dark" id="navbarHeader">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-8 col-md-7 py-4">
+                            <h4 class="text-white">About</h4>
+                            <p class="text-muted">
+                                Add some information about the album below, the
+                                author, or any other background context. Make it
+                                a few sentences long so folks can pick up some
+                                informative tidbits. Then, link them off to some
+                                social networking sites or contact information.
+                            </p>
+                        </div>
+                        <div class="col-sm-4 offset-md-1 py-4">
+                            <h4 class="text-white" href="{% url 'downloader:home' %}">首页</h4>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="{% url 'downloader:upload' %}" class="text-white"
+                                        >上传</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="{% url 'downloader:downloads' %}" class="text-white"
+                                        >下载</a
+                                    >
+                                </li>
+                                <li>
+                                    <a href="#" class="text-white">敬请期待</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+                <div class="container d-flex justify-content-between">
+                    <a href="{% url 'downloader:home' %}" class="navbar-brand d-flex align-items-center">
+                        <img src="{% static 'downloader/icons/logo-PA_b@300x300.png' %}" width="33" height="33" 
+                        class="d-inline-block align-top" alt="">
+                        <strong>&ThinSpace; NPUPA · {% block headerName %}Home{% endblock headerName %}</strong>
+                    </a>
+                    <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarHeader"
+                        aria-controls="navbarHeader"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main role="main" class="container">
+			{% block main %}
+			{% endblock main %}
+        </main>
+
+        <footer class="text-muted">
+            <div class="container">
+                <p class="float-right">
+					<br>
+					<a href="#">Back to top</a>
+				</p>
+                <p>
+					<br>
+					<strong>Copyright &copy; <fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy"/>Steve X.</strong>
+                </p>
+            </div>
+        </footer>
+        <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.slim.min.js"></script>
+        <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
