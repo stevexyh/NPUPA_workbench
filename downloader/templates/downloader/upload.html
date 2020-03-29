@@ -10,11 +10,14 @@
 		<div class="container">
 			<h1>NPUPA Uploads</h1>
 			<p class="lead text-muted">在此上传文件到服务器.</p>
-			<p>
-				<a href="{% url 'downloader:upload' %}" class="btn btn-primary my-2"
-					>上传文件</a
-				>
-			</p>
+			<form method="POST" action="{% url 'downloader:upload' %}" enctype="multipart/form-data">
+				{% csrf_token %}
+				<input type="file" class="align-middle" name="file"><br>
+				<button type="submit" class="btn btn-primary my-2"> 上传文件 </button>
+            </form>
+			{% if file_name %}
+				<h5>文件保存为: {{ file_name }}</h5>
+			{% endif %}
 		</div>
 	</section>
 

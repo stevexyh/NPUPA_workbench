@@ -16,8 +16,10 @@
         <meta name="generator" content="Jekyll v3.8.6" />
         <title>{% block title %}NPUPA Downloads{% endblock title %}</title>
 
-        <link rel="shortcut icon" href="{% static 'downloader/icons/logo-PA_b@300x300.png' %}">
-
+        <link
+            rel="shortcut icon"
+            href="{% static 'downloader/icons/logo-PA_b@300x300.png' %}"
+        />
         <!-- Bootstrap core CSS -->
         <link
             href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css"
@@ -25,26 +27,11 @@
         />
 
         <!-- Favicons -->
-        {% comment %} <style>
-            .bd-placeholder-img {
-                font-size: 1.125rem;
-                text-anchor: middle;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
-            }
-
-            @media (min-width: 768px) {
-                .bd-placeholder-img-lg {
-                    font-size: 3.5rem;
-                }
-            }
-        </style> {% endcomment %}
 
         <!-- Custom styles for this template -->
-        <link rel="stylesheet" href="{% static 'downloader/css/base.css' %}">
-        <link rel="stylesheet" href="{% block css %}{% endblock css %}">
+        <link rel="stylesheet" href="{% static 'downloader/css/base.css' %}" />
+        <link rel="stylesheet" href="{% block css %}{% endblock css %}" />
+        <style></style>
     </head>
     <body>
         <header>
@@ -62,62 +49,164 @@
                             </p>
                         </div>
                         <div class="col-sm-4 offset-md-1 py-4">
-                            <h4 class="text-white" href="{% url 'downloader:home' %}">首页</h4>
+                            <a
+                                class="text-white"
+                                href="{% url 'downloader:home' %}"
+                                ><h4>首页</h4></a
+                            >
                             <ul class="list-unstyled">
                                 <li>
-                                    <a href="{% url 'downloader:upload' %}" class="text-white"
-                                        >上传</a
+                                    <a href="{% url 'downloader:upload' %}"
+                                        ><strong>上传</strong></a
                                     >
                                 </li>
                                 <li>
-                                    <a href="{% url 'downloader:downloads' %}" class="text-white"
-                                        >下载</a
+                                    <a href="{% url 'downloader:downloads' %}"
+                                        ><strong>下载</strong></a
                                     >
                                 </li>
                                 <li>
-                                    <a href="#" class="text-white">敬请期待</a>
+                                    <a href="admin/"><strong>管理员</strong></a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="navbar navbar-dark bg-dark shadow-sm">
-                <div class="container d-flex justify-content-between">
-                    <a href="{% url 'downloader:home' %}" class="navbar-brand d-flex align-items-center">
-                        <img src="{% static 'downloader/icons/logo-PA_b@300x300.png' %}" width="33" height="33" 
-                        class="d-inline-block align-top" alt="">
-                        <strong>&ThinSpace; NPUPA · {% block headerName %}Home{% endblock headerName %}</strong>
-                    </a>
-                    <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarHeader"
-                        aria-controls="navbarHeader"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                    >
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            {% comment %} <!-- <div class="navbar navbar-dark bg-dark shadow-sm">
+                <div class="d-flex justify-content-between">
+                    <nav>
+                        <a href="{% url 'downloader:home' %}" class="navbar-brand d-flex align-items-center">
+                            <img src="{% static 'downloader/icons/logo-PA_b@300x300.png' %}" width="33" height="33" 
+                            class="d-inline-block align-top" alt="">
+                            <strong>&ThinSpace; NPUPA · {% block headerName %}Home{% endblock headerName %}</strong>
+                        </a>
+                        <ul>
+                            <li><a href="{% url 'downloader:home' %}">首页</a></li>
+                            <li><a href="{% url 'downloader:downloads' %}">下载</a></li>
+                            <li><a href="{% url 'downloader:upload' %}">上传</a></li>
+                        </ul>
+                    </nav>
+                    
+                    <form class="form-inline mt-2 mt-md-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-toggle="collapse"
+                            data-target="#navbarHeader"
+                            aria-controls="navbarHeader"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </form>
                 </div>
-            </div>
+            </div> --> {% endcomment %}
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fix-top">
+                {% comment %} <a class="navbar-brand align-items-center" href="{% url 'downloader:home' %}">
+                    <img
+                        src="{% static 'downloader/icons/logo-PA_b@300x300.png' %}"
+                        width="33"
+                        height="33"
+                        class="d-inline-block align-top"
+                        alt=""
+                    />
+                    <strong
+                        >&ThinSpace; NPUPA · {% block headerName %}Home{% endblock headerName %}</strong
+                    >
+                </a> {% endcomment %}
+                <a href="{% url 'downloader:home' %}" class="navbar-brand d-flex align-items-center">
+                    <img src="{% static 'downloader/icons/logo-PA_b@300x300.png' %}" width="33" height="33" 
+                    class="d-inline-block align-top" alt="">
+                    <strong>&ThinSpace; NPUPA · {% block headerName %}Home{% endblock headerName %}</strong>
+                </a>
+
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div
+                    class="collapse navbar-collapse"
+                    id="navbarSupportedContent"
+                >
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"
+                                >Home <span class="sr-only">(current)</span></a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                Dropdown
+                            </a>
+                            <div
+                                class="dropdown-menu"
+                                aria-labelledby="navbarDropdown"
+                            >
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#"
+                                    >Another action</a
+                                >
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"
+                                    >Something else here</a
+                                >
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="form-inline my-2 my-lg-0">
+                        <input
+                            class="form-control mr-sm-2"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                        />
+                        <button
+                            class="btn btn-outline-info my-2 my-sm-0"
+                            type="submit"
+                        >
+                            搜索
+                        </button>
+                    </form>
+                </div>
+            </nav>
         </header>
 
         <main role="main" class="container">
-			{% block main %}
-			{% endblock main %}
+            {% block main %} {% endblock main %}
         </main>
 
         <footer class="text-muted">
             <div class="container">
                 <p class="float-right">
-					<br>
-					<a href="#">Back to top</a>
-				</p>
+                    <br />
+                    <a href="#">Back to top</a>
+                </p>
                 <p>
-					<br>
-					<strong>Copyright &copy; <fmt:formatDate value="<%=new java.util.Date()%>" pattern="yyyy"/>Steve X.</strong>
+                    <br />
+                    <strong>Copyright &copy; Steve X.</strong>
                 </p>
             </div>
         </footer>
