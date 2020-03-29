@@ -2,8 +2,9 @@ docs/*
 downloader/contents/*
 **/*.doc
 **/*.docx
-**/__pycache__/
 **/.DS_Store
+**/__pycache__/
+.sec_key
 db.sqlite3
 
 !**/*.md

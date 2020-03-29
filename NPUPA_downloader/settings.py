@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'u&h8h@_q^=&a=3iu8+(%**1_x5oql7-##8g#fd-c&y9+9%6@h('
+SECRET_KEY = open(os.path.join(BASE_DIR, '.sec_key')).read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -107,7 +107,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -120,6 +120,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = (
-#     os.path.join(BASE_DIR, '/downloader/contents/'),
-# )
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'downloader/static/downloader/'),
+)
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'downloader/contents/')
+MEDIA_URL = '/files/'

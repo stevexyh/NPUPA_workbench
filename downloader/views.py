@@ -1,6 +1,7 @@
 import os
 from django.shortcuts import render
 from django.http import FileResponse
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 file_list = []
@@ -17,7 +18,13 @@ def base(request):
 
 
 def upload(request):
-    return render(request, 'downloader/upload.html')
+    content = {}
+    if request.method == 'POST':
+        uploaded_file = request.FILES['file']
+        store = FileSystemStorage()
+        file_name = store.save(uploaded_file.name, uploaded_file)
+        content['file_name'] = file_name
+    return render(request, 'downloader/upload.html', content)
 
 
 def downloads(request):

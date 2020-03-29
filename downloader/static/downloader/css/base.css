@@ -1,13 +1,60 @@
 /* FIXME */
-.navbar {
-    position: sticky;
-    /* position: -webkit-sticky; */
-    top: 10px;
 
-    width: 100%;
-    height: 60px;
-    left: 0;
+/* .navbar.navbar-dark.bg-dark.shadow-sm {
+    margin: 0px;
 }
+
+.form-inline.mt-2.mt-md-0 button {
+    padding-right: 10px;
+}
+
+.d-flex.justify-content-between {
+    margin: 0px 0px;
+    padding: 0px;
+    width: 100%;
+    display: inline-block
+}
+
+nav {
+    display: inline-block;
+    padding: 5px 0px;
+}
+nav ul {
+    list-style-type: none;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+    margin-right: 0;
+    padding: 10px 0px 0px 0px;
+}
+
+nav li {
+    display: inline-block;
+    color: white;
+    margin-right: 20px;
+    font-size: larger;
+}
+
+.navbar-brand.d-flex.align-items-center {
+    display: inline-block;
+}
+
+a {
+    color: #aaaaaa;
+}
+
+a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+
+.navbar-toggler {
+    height: 38px;
+    padding: 6px 12px;
+} */
+
 
 /* .navbarHeader {
     top: 100;

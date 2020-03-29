@@ -23,5 +23,6 @@ urlpatterns = [
     path('upload/', views.upload, name='upload'),
     path('downloads/', views.downloads, name='downloads'),
     path('contents/', views.download_file, name='contents'),
-	# url(r'^download/',views.download,name="download"),
+
+    # url(r'^download/',views.download,name="download"),
 ]
