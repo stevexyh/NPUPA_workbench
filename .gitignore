@@ -1,0 +1,7 @@
+docs/*
+**/*.doc
+**/*.docx
+**/__pycache__/
+**/.DS_Store
+
+!**/*.md
