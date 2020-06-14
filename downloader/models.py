@@ -12,7 +12,7 @@ class FileSource(models.Model):
     description = models.TextField(default='')
     download_cnt = models.IntegerField(default=0)
     file_body = models.FileField(
-        upload_to='downloader/contents/', default='null')
+        upload_to='', default='null')
 
     def __str__(self):
         dic = {
