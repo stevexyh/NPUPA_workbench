@@ -4,7 +4,8 @@ downloader/contents/*
 **/*.docx
 **/.DS_Store
 **/__pycache__/
-.sec_key
 db.sqlite3
+.sec_key
+.init.conf
 
 !**/*.md
