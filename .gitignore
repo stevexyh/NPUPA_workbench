@@ -1,7 +1,11 @@
-docs/*
 **/*.doc
 **/*.docx
 **/__pycache__/
 **/.DS_Store
+docs/*
+downloader/contents/*
+db.sqlite3
+.sec_key
+.init.conf
 
 !**/*.md
