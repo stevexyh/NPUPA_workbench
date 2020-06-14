@@ -50,7 +50,11 @@ def list_files():
     '''获取目录下所有文件信息'''
     global file_list
     file_list.clear()
-    file_dir = os.listdir(FILE_DIR)
+    try:
+        file_dir = os.listdir(FILE_DIR)
+    except FileNotFoundError:
+        os.mkdir(FILE_DIR)
+        file_dir = os.listdir(FILE_DIR)
     file_dir.sort()
 
     def is_ignored(filename):
