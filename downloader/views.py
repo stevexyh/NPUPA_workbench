@@ -20,10 +20,13 @@ def base(request):
 def upload(request):
     content = {}
     if request.method == 'POST':
-        uploaded_file = request.FILES['file']
-        store = FileSystemStorage()
-        file_name = store.save(uploaded_file.name, uploaded_file)
-        content['file_name'] = file_name
+        try:
+            uploaded_file = request.FILES['file']
+            store = FileSystemStorage()
+            file_name = store.save(uploaded_file.name, uploaded_file)
+            content['file_name'] = file_name
+        except:
+            content['file_name'] = 'NULL'
     return render(request, 'downloader/upload.html', content)
 
 

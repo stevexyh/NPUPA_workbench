@@ -1,5 +1,86 @@
 /* FIXME */
 
+nav {
+    display: inline-block;
+    padding: 5px 0px;
+}
+ul {
+    list-style-type: none;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    margin: auto;
+    margin-right: 0;
+}
+
+h1 {
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+
+a {
+    color: #aaaaaa;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+code {
+    color: #c73b25;
+    background-color: #f9f4f2;
+    border-radius: 4px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    padding: 2px 6px;
+    font-size: 90%;
+}
+
+.navbar li {
+    display: inline-block;
+    color: white;
+    margin-right: 20px;
+    font-size: larger;
+}
+
+.pulldown li {
+    color: white;
+    margin-right: 20px;
+    font-size: larger;
+    text-align: left;
+}
+
+.pulldown a:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.contact-info {
+    background-color: #c73b25;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}
+
+.contact-info svg {
+    display: inline-block;
+    background-color: aqua;
+    align-self: center;
+    margin: auto;
+    width: 25px;
+    height: 25px;
+}
+
+.contact-info a {
+    background-color: aquamarine;
+    display: inline-block;
+    /* margin-top: 0px; */
+    margin: auto;
+}
+
+/*----------------------------------------------------------------*/
+
+/* FIXME */
+
 /* .navbar.navbar-dark.bg-dark.shadow-sm {
     margin: 0px;
 }
@@ -54,7 +135,6 @@ a:hover {
     height: 38px;
     padding: 6px 12px;
 } */
-
 
 /* .navbarHeader {
     top: 100;

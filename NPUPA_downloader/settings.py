@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import configparser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +22,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = open(os.path.join(BASE_DIR, '.sec_key')).read().strip()
+INIT_CONF = os.path.join(BASE_DIR, '.init.conf')
+
+conf = configparser.ConfigParser()
+conf.read(INIT_CONF)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,8 +82,14 @@ WSGI_APPLICATION = 'NPUPA_downloader.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+        'NAME': conf.get('django', 'name'),
+        'HOST': conf.get('django', 'host'),
+        'PORT': conf.get('django', 'port'),
+        'USER': conf.get('django', 'user'),
+        'PASSWORD': conf.get('django', 'password'),
     }
 }
 
@@ -124,5 +135,5 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'downloader/static/downloader/'),
 )
 
-MEDIA_ROOT = os.path.join(BASE_DIR,'downloader/contents/')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'downloader/contents/')
 MEDIA_URL = '/files/'

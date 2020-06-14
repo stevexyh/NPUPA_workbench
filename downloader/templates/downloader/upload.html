@@ -5,20 +5,47 @@
 {% block title %}NPUPA资源·上传{% endblock title %}
 {% block headerName %}Upload{% endblock headerName %}
 {% block main %}
-	<br><br>
-	<section class="jumbotron text-center">
-		<div class="container">
-			<h1>NPUPA Uploads</h1>
-			<p class="lead text-muted">在此上传文件到服务器.</p>
-			<form method="POST" action="{% url 'downloader:upload' %}" enctype="multipart/form-data">
-				{% csrf_token %}
-				<input type="file" class="align-middle" name="file"><br>
-				<button type="submit" class="btn btn-primary my-2"> 上传文件 </button>
-            </form>
-			{% if file_name %}
-				<h5>文件保存为: {{ file_name }}</h5>
-			{% endif %}
-		</div>
-	</section>
+<br><br>
+<section class="jumbotron text-center">
+	<div class="container">
+		<h1>NPUPA Upload</h1>
+		<p class="lead text-muted">在此上传文件到服务器.</p>
+		<p class="lead text-muted">选择文件后点击上传.</p>
+		<form method="POST" action="{% url 'downloader:upload' %}" enctype="multipart/form-data">
+			{% csrf_token %}
+
+			<fieldset>
+				<div class="custom-file w-100">
+					<input
+						type="file"
+						class="custom-file-input"
+						accept=".csv"
+						id="customFile"
+						name="file"
+					/><label
+						class="custom-file-label"
+						for="customFile"
+						>点击此处选择文件(暂不支持多文件同时上传)</label
+					>
+
+				<br><br>
+				<button type="submit" class="btn btn-outline-success my-2"> 上传文件 </button>
+				</div>
+			</fieldset>
+
+		</form>
+		<br><br>
+		{% if file_name and file_name != 'NULL' %}
+			<div class="alert alert-success" role="alert">
+				文件上传成功: {{ file_name }}
+			</div>
+		{% endif %}
+		{% if file_name == 'NULL' %}
+			<div class="alert alert-warning" role="alert">
+				文件上传失败: {{ file_name }} 可能未选中文件
+			</div>
+		{% endif %}
+	</div>
+</section>
 
 {% endblock main %}
