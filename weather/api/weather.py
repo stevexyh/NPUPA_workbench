@@ -13,11 +13,6 @@
 
 import json
 import requests
-import astral
-import datetime
-import pytz
-from astral.sun import sun
-from astral import LocationInfo
 from functions import token as tk
 from functions import format_string as fs
 
@@ -80,50 +75,9 @@ class WeatherNow(Weather):
         self.aqi_dict = {}
 
 
-class Astronomy(object):
-    pass
-
-
 def run():
     x = WeatherNow(ip='auto_ip')
     x.request()
     print(x.weather_type)
     p = x.get_all()
     print(p)
-
-
-# latitude = 46.582859
-# longitude = 125.138808
-
-# city = LocationInfo(latitude=latitude, longitude=longitude,
-#                     timezone='Asia/Shanghai')
-# print((
-#     f"Information for {city.name}/{city.region}\n"
-#     f"Timezone: {city.timezone}\n"
-#     f"Latitude: {city.latitude:.02f}; Longitude: {city.longitude:.02f}\n"
-# ))
-
-
-# # obs = astral.Observer(latitude=latitude, longitude=longitude)
-# s = astral.sun.sun(city.observer, date=datetime.datetime.now(),
-#                    tzinfo=pytz.timezone('Asia/Shanghai'))
-
-# gd_r_begin, gd_r_end = astral.sun.golden_hour(
-#     city.observer, direction=astral.SunDirection.RISING, tzinfo=pytz.timezone('Asia/Shanghai'))
-# gd_s_begin, gd_s_end = astral.sun.golden_hour(
-#     city.observer, direction=astral.SunDirection.SETTING, tzinfo=pytz.timezone('Asia/Shanghai'))
-
-# print((
-#     f'Dawn:    {s["dawn"]}\n'
-#     f'Sunrise: {s["sunrise"]}\n'
-#     f'Noon:    {s["noon"]}\n'
-#     f'Sunset:  {s["sunset"]}\n'
-#     f'Dusk:    {s["dusk"]}\n'
-
-#     f'Golden Hour Rise:    {str(gd_r_begin), str(gd_r_end)}\n'
-#     f'Golden Hour Set:    {str(gd_s_begin), str(gd_s_end)}\n'
-#     # f'Blue Hour:    {s["dusk"]}\n'
-# ))
-
-# print(astral.SunDirection.RISING)
-# print(astral.SunDirection.SETTING)
