@@ -17,15 +17,39 @@ import configparser
 TOKEN_FILE = '.sec_key'
 INIT_CONF = '.init.conf'
 
-conf = configparser.ConfigParser()
-conf.read(INIT_CONF)
+try:
+    conf = configparser.ConfigParser()
+    conf.read(INIT_CONF)
+except FileNotFoundError as err:
+    print(err)
+
+    info = f'''
+    INFO: Token file {INIT_CONF} missing.
+            - Please create file {INIT_CONF} at root dir of the project.
+            - Please fill in your config info in the same format of {INIT_CONF}.sample.
+            - Maybe you are not permitted to run this project.
+    '''
+
+    print(info)
 
 
 def get_token():
     '''Get token from files'''
     token = ''
-    with open(TOKEN_FILE, 'r') as f:
-        token = f.readline().strip()
+    try:
+        with open(TOKEN_FILE, 'r') as f:
+            token = f.readline().strip()
+    except FileNotFoundError as err:
+        print(err)
+
+        info = f'''
+        INFO: Token file {TOKEN_FILE} missing.
+                - Please create file {TOKEN_FILE} at root dir of the project.
+                - Please fill in your SECRET KEY for the project.
+                - Maybe you are not permitted to run this project.
+        '''
+
+        print(info)
 
     return token
 
