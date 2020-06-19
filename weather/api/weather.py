@@ -31,7 +31,6 @@ class Weather:
     def get_all(self):
         res = fs.format_en(self.__dict__)
         return res
-        # return self.__dict__
 
     def get_coordinate(self):
         lat = str(self.latitude) + ' N' if self.latitude > 0 else ' S'
@@ -39,7 +38,7 @@ class Weather:
         return (lat, lon)
 
     def request(self):
-        url = f'https://free-api.heweather.net/s6/weather/{self.weather_type}?location={self.longitude},{self.latitude}&key={wthr_key}'
+        url = f'https://free-api.heweather.net/s6/weather/{self.weather_type}?location={self.ip}&key={wthr_key}'
         self.res_json = requests.get(url).text
         self.res_dict = json.loads(self.res_json)['HeWeather6'][0]
         self.time_zone = 'UTC ' + self.res_dict['basic']['tz']
@@ -51,7 +50,8 @@ class Weather:
         self.latitude = self.res_dict['basic']['lat']
         self.longitude = self.res_dict['basic']['lon']
 
-    def __init__(self, location: str = '北京', latitude: float = 39.90498734, longitude: float = 116.4052887):
+    def __init__(self, ip: str = '', location: str = '北京', latitude: float = 39.90498734, longitude: float = 116.4052887):
+        self.ip = ip
         self.location = location
         self.latitude = latitude
         self.longitude = longitude
@@ -70,12 +70,12 @@ class WeatherNow(Weather):
 
     def request(self):
         Weather.request(self)
-        aqi_url = f'https://free-api.heweather.net/s6/air/now?location={self.city}&key={wthr_key}'
+        aqi_url = f'https://free-api.heweather.net/s6/air/now?location={self.ip}&key={wthr_key}'
         self.aqi_json = requests.get(aqi_url).text
         self.aqi_dict = json.loads(self.aqi_json)['HeWeather6'][0]
 
-    def __init__(self, location: str = '北京', latitude: float = 39.90498734, longitude: float = 116.4052887):
-        Weather.__init__(self, location, latitude, longitude)
+    def __init__(self, ip: str = '', location: str = '北京', latitude: float = 39.90498734, longitude: float = 116.4052887):
+        Weather.__init__(self, ip, location, latitude, longitude)
         self.aqi_json = ''
         self.aqi_dict = {}
 
@@ -83,8 +83,9 @@ class WeatherNow(Weather):
 class Astronomy(object):
     pass
 
+
 def run():
-    x = WeatherNow(latitude=46.582859, longitude=125.138808)
+    x = WeatherNow(ip='auto_ip')
     x.request()
     print(x.weather_type)
     p = x.get_all()

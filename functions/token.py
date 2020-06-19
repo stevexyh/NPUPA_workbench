@@ -14,8 +14,7 @@
 import configparser
 
 
-TOKEN_FILE = './token'
-WEATHER_KEY = './weather_key'
+TOKEN_FILE = '.sec_key'
 INIT_CONF = '.init.conf'
 
 conf = configparser.ConfigParser()
@@ -36,3 +35,10 @@ def get_weather_key():
     token = conf.get('weather', 'key')
 
     return token
+
+
+def get_conf(section: str = '', option: str = ''):
+    '''Get config from files'''
+    res = conf.get(section=section, option=option)
+
+    return res

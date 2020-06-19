@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import configparser
+from functions import token as tk
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,11 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = open(os.path.join(BASE_DIR, '.sec_key')).read().strip()
-INIT_CONF = os.path.join(BASE_DIR, '.init.conf')
+SECRET_KEY = tk.get_token()
 
-conf = configparser.ConfigParser()
-conf.read(INIT_CONF)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -85,11 +82,11 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
-        'NAME': conf.get('mysql', 'name'),
-        'HOST': conf.get('mysql', 'host'),
-        'PORT': conf.get('mysql', 'port'),
-        'USER': conf.get('mysql', 'user'),
-        'PASSWORD': conf.get('mysql', 'password'),
+        'NAME': tk.get_conf('mysql', 'name'),
+        'HOST': tk.get_conf('mysql', 'host'),
+        'PORT': tk.get_conf('mysql', 'port'),
+        'USER': tk.get_conf('mysql', 'user'),
+        'PASSWORD': tk.get_conf('mysql', 'password'),
     }
 }
 
