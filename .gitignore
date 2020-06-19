@@ -7,5 +7,6 @@ downloader/contents/*
 db.sqlite3
 .sec_key
 .init.conf
+test_module.py
 
 !**/*.md
