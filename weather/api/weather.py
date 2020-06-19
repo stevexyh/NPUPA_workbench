@@ -20,7 +20,7 @@ from functions import format_string as fs
 wthr_key = tk.get_weather_key()
 
 
-class Weather:
+class Weather(object):
     weather_type = ''
 
     def get_all(self):

@@ -23,7 +23,8 @@ from astral.sun import sun
 from astral import LocationInfo
 
 
-class Astronomy():
+class Astronomy(object):
+
     def __init__(self, city: str = '', latitude: float = 0, longitude: float = 0):
         self.city = city
         self.latitude = latitude
@@ -33,35 +34,51 @@ class Astronomy():
 latitude = 46.582859
 longitude = 125.138808
 
-city = LocationInfo(latitude=latitude, longitude=longitude,
-                    timezone='Asia/Shanghai')
+location = LocationInfo(
+    latitude=latitude,
+    longitude=longitude,
+    timezone='Asia/Shanghai'
+)
+
 print((
-    f"Information for {city.name}/{city.region}\n"
-    f"Timezone: {city.timezone}\n"
-    f"Latitude: {city.latitude:.02f}; Longitude: {city.longitude:.02f}\n"
+    f"Information for {location.name}/{location.region}\n"
+    f"Timezone: {location.timezone}\n"
+    f"Latitude: {location.latitude:.02f}; Longitude: {location.longitude:.02f}\n"
 ))
 
 
 # obs = astral.Observer(latitude=latitude, longitude=longitude)
-s = tk.get_confsun(city.observer, date=datetime.datetime.now(),
-                   tzinfo=pytz.timezone('Asia/Shanghai'))
+sun_info = astral.sun.sun(
+    location.observer,
+    date=datetime.datetime.now(),
+    tzinfo=pytz.timezone('Asia/Shanghai')
+)
 
-gd_r_begin, gd_r_end = tk.get_confgolden_hour(
-    city.observer, direction=astral.SunDirection.RISING, tzinfo=pytz.timezone('Asia/Shanghai'))
-gd_s_begin, gd_s_end = tk.get_confgolden_hour(
-    city.observer, direction=astral.SunDirection.SETTING, tzinfo=pytz.timezone('Asia/Shanghai'))
+gd_r_begin, gd_r_end = astral.sun.golden_hour(
+    location.observer,
+    direction=astral.SunDirection.RISING,
+    tzinfo=pytz.timezone('Asia/Shanghai')
+)
+gd_s_begin, gd_s_end = astral.sun.golden_hour(
+    location.observer,
+    direction=astral.SunDirection.SETTING,
+    tzinfo=pytz.timezone('Asia/Shanghai')
+)
 
 print((
-    f'Dawn:    {s["dawn"]}\n'
-    f'Sunrise: {s["sunrise"]}\n'
-    f'Noon:    {s["noon"]}\n'
-    f'Sunset:  {s["sunset"]}\n'
-    f'Dusk:    {s["dusk"]}\n'
+    f'Dawn:    {sun_info["dawn"]}\n'
+    f'Sunrise: {sun_info["sunrise"]}\n'
+    f'Noon:    {sun_info["noon"]}\n'
+    f'Sunset:  {sun_info["sunset"]}\n'
+    f'Dusk:    {sun_info["dusk"]}\n'
 
     f'Golden Hour Rise:    {str(gd_r_begin), str(gd_r_end)}\n'
     f'Golden Hour Set:    {str(gd_s_begin), str(gd_s_end)}\n'
-    # f'Blue Hour:    {s["dusk"]}\n'
+    f'Blue Hour:    {sun_info["dusk"]}\n'
 ))
 
-print(astral.SunDirection.RISING)
-print(astral.SunDirection.SETTING)
+print(sun_info)
+
+if __name__ == "__main__":
+
+    pass
