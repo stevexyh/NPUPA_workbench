@@ -13,19 +13,19 @@
 
 import json
 import requests
-from functions import token as tk
-from functions import format_string as fs
 
+try:
+    from functions import token as tk
+except ModuleNotFoundError:
+    import sys
+    sys.path.append('../..')
+    from functions import token as tk
 
 wthr_key = tk.get_weather_key()
 
 
 class Weather(object):
     weather_type = ''
-
-    def get_all(self):
-        res = fs.format_en(self.__dict__)
-        return res
 
     def get_coordinate(self):
         lat = str(self.latitude) + ' N' if self.latitude > 0 else ' S'
@@ -38,26 +38,30 @@ class Weather(object):
         self.res_dict = json.loads(self.res_json)['HeWeather6'][0]
         self.time_zone = 'UTC ' + self.res_dict['basic']['tz']
         self.update_time = self.res_dict['update']['loc']
+
         self.location = self.res_dict['basic']['location']
         self.city = self.res_dict['basic']['parent_city']
         self.admin_area = self.res_dict['basic']['admin_area']
         self.country = self.res_dict['basic']['cnty']
-        self.latitude = self.res_dict['basic']['lat']
-        self.longitude = self.res_dict['basic']['lon']
+        self.latitude = float(self.res_dict['basic']['lat'])
+        self.longitude = float(self.res_dict['basic']['lon'])
+        self.lat_str, self.lon_str = self.get_coordinate()
 
     def __init__(self, ip: str = '', location: str = '北京', latitude: float = 39.90498734, longitude: float = 116.4052887):
         self.ip = ip
-        self.location = location
-        self.latitude = latitude
-        self.longitude = longitude
-        self.lat_str, self.lon_str = self.get_coordinate()
-        self.city = ''
-        self.admin_area = ''
-        self.country = ''
         self.update_time = ''
         self.time_zone = ''
         self.res_json = ''
         self.res_dict = {}
+
+        self.location = location
+        self.city = ''
+        self.admin_area = ''
+        self.country = ''
+        self.latitude = latitude
+        self.longitude = longitude
+        self.lat_str, self.lon_str = self.get_coordinate()
+
 
 
 class WeatherNow(Weather):
@@ -73,11 +77,14 @@ class WeatherNow(Weather):
         Weather.__init__(self, ip, location, latitude, longitude)
         self.aqi_json = ''
         self.aqi_dict = {}
+        self.request()
 
 
 def run():
+    import beeprint
+
     x = WeatherNow(ip='auto_ip')
     x.request()
     print(x.weather_type)
-    p = x.get_all()
-    print(p)
+
+    beeprint.pp(x.__dict__, indent=4)
