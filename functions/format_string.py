@@ -203,6 +203,5 @@ def set_color(string, color):
 
 
 if __name__ == "__main__":
-    a = 'This is red.'
-    b = set_color(a, 'redFore')
-    print(b)
+    str_a = set_color('This is red.', 'redFore')
+    print(str_a)

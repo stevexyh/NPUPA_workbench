@@ -38,19 +38,19 @@ def get_token():
     '''Get token from files'''
     token = ''
     try:
-        with open(TOKEN_FILE, 'r') as f:
-            token = f.readline().strip()
+        with open(TOKEN_FILE, 'r') as tk_file:
+            token = tk_file.readline().strip()
     except FileNotFoundError as err:
         print(err)
 
-        info = f'''
+        info_str = f'''
         INFO: Token file {TOKEN_FILE} missing.
                 - Please create file {TOKEN_FILE} at root dir of the project.
                 - Please fill in your SECRET KEY for the project.
                 - Maybe you are not permitted to run this project.
         '''
 
-        print(info)
+        print(info_str)
 
     return token
 

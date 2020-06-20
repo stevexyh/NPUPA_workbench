@@ -25,8 +25,11 @@ from astral import moon
 
 
 class Astronomy(object):
+    '''Class of astronomy info, including Sun & Moon'''
 
     def init_location(self, timezone: str = 'Asia/Shanghai'):
+        '''Init LocationInfo object'''
+
         location = LocationInfo(
             latitude=self.latitude,
             longitude=self.longitude,
@@ -36,7 +39,9 @@ class Astronomy(object):
         return location
 
     def init_sun(self):
-        sun_info = astral.sun.sun(
+        '''Init Sun object'''
+
+        sun_info = sun(
             self.location.observer,
             date=datetime.datetime.now(),
             tzinfo=pytz.timezone('Asia/Shanghai')
@@ -69,6 +74,8 @@ class Astronomy(object):
         return sun_info
 
     def init_moon(self):
+        '''Init Moon object'''
+
         moon_info = {}
         moon_info['phase'] = moon.phase()
         moon_info['percent'] = moon_info['phase'] / 28
@@ -96,17 +103,7 @@ class Astronomy(object):
 if __name__ == "__main__":
     import beeprint
 
-    try:
-        from functions import format_string as fs
-    except ModuleNotFoundError:
-        import sys
-        sys.path.append('../..')
-        from functions import format_string as fs
-
-    latitude = 40
-    longitude = 120
-
-    astro = Astronomy(latitude=latitude, longitude=longitude)
+    astro = Astronomy(latitude=40, longitude=120)
     beeprint.pp(astro.__dict__, indent=4)
 
     print((
