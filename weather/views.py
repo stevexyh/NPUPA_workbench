@@ -14,6 +14,7 @@
 '''
 
 import beeprint
+import ipaddress
 from django.shortcuts import render
 from weather.api.get_info import get_info
 
@@ -40,16 +41,14 @@ def get_request_ip(request):
 
 def home(request):
     '''Render home page'''
-
-    ip_addr = get_request_ip(request)
-    req_location = '西安市' if ip_addr == '127.0.0.1' else ip_addr
+    ip_addr = ipaddress.ip_address(get_request_ip(request))
+    req_location = '西安市' if ip_addr.is_private else ip_addr
 
     res = get_info(ip_addr=req_location)
     weather_dic = res[0]
     astro_dic = res[1]
     beeprint.pp(res)
     beeprint.pp(ip_addr)
-
 
     weather_now = weather_dic['res_dict']['now']
     weather_code = weather_now['cond_code']
@@ -65,7 +64,7 @@ def home(request):
         'weather_code': weather_code,
         'weather_icon': f'/static/weather/icons/weather_icon/{ weather_icon }',
         'weather_cond': weather_dic['res_dict']['now']['cond_txt'],
-        'weather_temp':weather_now['tmp'],
+        'weather_temp': weather_now['tmp'],
     }
 
     beeprint.pp(content)
