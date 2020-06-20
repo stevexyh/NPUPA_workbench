@@ -9,7 +9,6 @@
 ## 项目结构
 ```
 NPUPA_weather
-.
 ├── .gitignore
 ├── .init.conf
 ├── .init.conf.sample
