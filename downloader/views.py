@@ -1,3 +1,18 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+'''
+---------------------------------------------
+* Project Name : NPUPA_workbench
+* File Name    : views.py
+* Description  : Django views
+* Create Time  : 2020-02-29 00:18:00
+* Version      : 1.0
+* Author       : Steve X
+* GitHub       : https://github.com/Steve-Xyh
+---------------------------------------------
+'''
+
 import os
 from django.shortcuts import render
 from django.http import FileResponse

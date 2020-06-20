@@ -1,0 +1,63 @@
+{% extends 'downloader/base.html' %}
+{% load static %}
+
+{% block css %}{% static 'downloader/css/downloads.css' %}{% endblock css %}
+{% block title %}NPUPA资源·下载{% endblock title %}
+{% block headerName %}Downloads{% endblock headerName %}
+{% block main %}
+
+<br /><br />
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">文件名</th>
+            <th scope="col">大小</th>
+            <th scope="col">下载</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for f in files %}
+        <tr>
+            <th scope="row" class="align-middle">{{ forloop.counter }}</th>
+            <td class="align-middle">{{ f.file_name }}</td>
+            <td class="align-middle">{{ f.file_size }}</td>
+            <td class="align-middle">
+                <form method="POST" action="{% url 'downloader:contents' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-success">
+                        下载
+                        <input
+                            type="hidden"
+                            name="file_name"
+                            value="{{ f.file_name }}"
+                        />
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<nav aria-label="...">
+    <ul class="pagination justify-content-end">
+        <li class="page-item">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+                >Previous</a
+            >
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#"
+                >2 <span class="sr-only">(current)</span></a
+            >
+        </li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+        </li>
+    </ul>
+</nav>
+
+{% endblock main %}

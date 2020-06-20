@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'downloader',
+    'weather',
 
     'django.contrib.admin',
     'django.contrib.auth',
