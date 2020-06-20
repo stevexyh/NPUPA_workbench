@@ -21,6 +21,7 @@ import astral
 import pytz
 from astral import LocationInfo
 from astral.sun import sun
+from astral import moon
 
 
 class Astronomy(object):
@@ -67,12 +68,29 @@ class Astronomy(object):
 
         return sun_info
 
+    def init_moon(self):
+        moon_info = {}
+        moon_info['phase'] = moon.phase()
+        moon_info['percent'] = moon_info['phase'] / 28
+
+        if moon_info['phase'] < 7:
+            moon_info['type'] = '新月'
+        elif moon_info['phase'] < 14:
+            moon_info['type'] = '上弦月'
+        elif moon_info['phase'] < 21:
+            moon_info['type'] = '满月'
+        else:
+            moon_info['type'] = '下弦月'
+
+        return moon_info
+
     def __init__(self, city: str = '', latitude: float = 0, longitude: float = 0):
         self.city = city
         self.latitude = latitude
         self.longitude = longitude
         self.location = self.init_location()
         self.sun = self.init_sun()
+        self.moon = self.init_moon()
 
 
 if __name__ == "__main__":
