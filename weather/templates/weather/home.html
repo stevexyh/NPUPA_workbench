@@ -12,12 +12,13 @@
                     <div class="col-md-4">
                         <h1><strong>{{ weather_temp }}</strong></h1>
                         <img
-                            src="{{ weather_icon }}"
-                            width="100"
-                            height="100"
-                            class="d-inline-block align-top"
-                            alt="null"
+                        src="{{ weather_icon }}"
+                        width="100"
+                        height="100"
+                        class="d-inline-block align-top"
+                        alt="null"
                         />
+                        <h1>{{ weather_cond }}</h1>
 
                     </div>
                     
@@ -28,12 +29,14 @@
                         <p class="lead text-muted">IP: {{ ip }}</p>
                         <p>
                             <a href="{% url 'weather:home' %}" class="btn btn-success my-2"
-                                >更新数据</a
+                            >更新数据</a
                             >
                         </p>
                     </div>
                     <div class="col-md-4">
-    
+                        <h1><strong>AQI</strong></h1>
+                        <h1 style="font-size: 60px;"><strong>{{ aqi }}</strong></h1>
+                        <h1>{{ aqi_qlty }}</h1>
                     </div>
                 </div>
 

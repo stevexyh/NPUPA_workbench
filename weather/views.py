@@ -50,6 +50,7 @@ def home(request):
     beeprint.pp(res)
     beeprint.pp(ip_addr)
 
+    aqi_now = weather_dic['aqi_dict']['air_now_city']
     weather_now = weather_dic['res_dict']['now']
     weather_code = weather_now['cond_code']
     weather_icon = weather_code + '.png'
@@ -64,7 +65,10 @@ def home(request):
         'weather_code': weather_code,
         'weather_icon': f'/static/weather/icons/weather_icon/{ weather_icon }',
         'weather_cond': weather_dic['res_dict']['now']['cond_txt'],
-        'weather_temp': weather_now['tmp'],
+        'weather_temp': weather_now['tmp'] + ' °C',
+
+        'aqi':aqi_now['aqi'],
+        'aqi_qlty':aqi_now['qlty'],
 
         'sun_rise': astro_dic['sun']['sunrise'].strftime('%H:%M'),
         'sun_set': astro_dic['sun']['sunset'].strftime('%H:%M'),
