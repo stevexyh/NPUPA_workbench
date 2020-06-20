@@ -1,0 +1,7 @@
+beeprint
+astral
+pytz
+PyMySQL
+requests
+colorama
+Django
