@@ -65,6 +65,17 @@ def home(request):
         'weather_icon': f'/static/weather/icons/weather_icon/{ weather_icon }',
         'weather_cond': weather_dic['res_dict']['now']['cond_txt'],
         'weather_temp': weather_now['tmp'],
+
+        'sun_rise': astro_dic['sun']['sunrise'].strftime('%H:%M'),
+        'sun_set': astro_dic['sun']['sunset'].strftime('%H:%M'),
+        'gold_rbegin': astro_dic['sun']['golden_rise'][0].strftime('%H:%M'),
+        'gold_rend': astro_dic['sun']['golden_rise'][1].strftime('%H:%M'),
+        'gold_sbigin': astro_dic['sun']['golden_set'][0].strftime('%H:%M'),
+        'gold_send': astro_dic['sun']['golden_set'][1].strftime('%H:%M'),
+        'blue_rbegin': astro_dic['sun']['blue_rise'][0].strftime('%H:%M'),
+        'blue_rend': astro_dic['sun']['blue_rise'][1].strftime('%H:%M'),
+        'blue_sbigin': astro_dic['sun']['blue_set'][0].strftime('%H:%M'),
+        'blue_send': astro_dic['sun']['blue_set'][0].strftime('%H:%M'),
     }
 
     beeprint.pp(content)
