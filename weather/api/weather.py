@@ -47,7 +47,7 @@ class Weather(object):
         self.longitude = float(self.res_dict['basic']['lon'])
         self.lat_str, self.lon_str = self.get_coordinate()
 
-    def __init__(self, ip: str = '', location: str = '北京', latitude: float = 39.90498734, longitude: float = 116.4052887):
+    def __init__(self, ip: str = '', location: str = '北京', latitude: float = 40, longitude: float = 116):
         self.ip = ip
         self.update_time = ''
         self.time_zone = ''
@@ -61,7 +61,6 @@ class Weather(object):
         self.latitude = latitude
         self.longitude = longitude
         self.lat_str, self.lon_str = self.get_coordinate()
-
 
 
 class WeatherNow(Weather):

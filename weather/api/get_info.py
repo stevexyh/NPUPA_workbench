@@ -16,11 +16,23 @@
 ---------------------------------------------
 '''
 
+import beeprint
 from . import weather
 from . import astro
 
 
-def get_info(ip: str = 'auto_ip'):
+def get_info(ip: str = 'auto_ip') -> list:
+    '''
+    Get weather & astro info
+
+    Parameters::
+        ip - IP address for query location
+    Returns::
+        res: list - the query result
+            - res[0] for weather_info
+            - res[1] for astro_info
+    '''
+
     weather_info = weather.WeatherNow(ip=ip)
     astro_info = astro.Astronomy(
         city=weather_info.city,
@@ -28,11 +40,11 @@ def get_info(ip: str = 'auto_ip'):
         longitude=weather_info.longitude
     )
 
-    return weather_info, astro_info
+    res = [weather_info.__dict__, astro_info.__dict__]
+
+    return res
 
 
 def run(ip: str = ''):
-    import beeprint
-    w, a = get_info()
-    beeprint.pp(w)
-    beeprint.pp(a)
+    res = get_info(ip=ip)
+    beeprint.pp(res)
