@@ -2,6 +2,7 @@ docs/*
 downloader/contents/*
 **/*.doc
 **/*.docx
+**/*.log
 **/.DS_Store
 **/__pycache__/
 db.sqlite3
