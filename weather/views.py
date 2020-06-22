@@ -53,7 +53,7 @@ def home(request):
     aqi_now = weather_dic['aqi_dict']['air_now_city']
     weather_now = weather_dic['res_dict']['now']
     weather_code = weather_now['cond_code']
-    weather_icon = weather_code + '.png'
+    moon_icon = astro_dic['moon']['icon'] + '.png'
 
     if aqi_now['qlty'] == '优':
         aqi_color = 'btn btn-outline-success'
@@ -70,7 +70,7 @@ def home(request):
         'longitude': weather_dic['lon_str'],
 
         'weather_code': weather_code,
-        'weather_icon': f'/static/weather/icons/weather_icon/{ weather_icon }',
+        'weather_icon': f'/static/weather/icons/weather_icon/{ weather_code }.png',
         'weather_cond': weather_dic['res_dict']['now']['cond_txt'],
         'weather_temp': weather_now['tmp'] + ' °C',
         'weather_update': weather_dic['res_dict']['update']['loc'],
@@ -83,12 +83,16 @@ def home(request):
         'sun_set': astro_dic['sun']['sunset'].strftime('%H:%M'),
         'gold_rbegin': astro_dic['sun']['golden_rise'][0].strftime('%H:%M'),
         'gold_rend': astro_dic['sun']['golden_rise'][1].strftime('%H:%M'),
-        'gold_sbigin': astro_dic['sun']['golden_set'][0].strftime('%H:%M'),
+        'gold_sbegin': astro_dic['sun']['golden_set'][0].strftime('%H:%M'),
         'gold_send': astro_dic['sun']['golden_set'][1].strftime('%H:%M'),
         'blue_rbegin': astro_dic['sun']['blue_rise'][0].strftime('%H:%M'),
         'blue_rend': astro_dic['sun']['blue_rise'][1].strftime('%H:%M'),
-        'blue_sbigin': astro_dic['sun']['blue_set'][0].strftime('%H:%M'),
+        'blue_sbegin': astro_dic['sun']['blue_set'][0].strftime('%H:%M'),
         'blue_send': astro_dic['sun']['blue_set'][0].strftime('%H:%M'),
+
+        'moon_icon': f'/static/weather/icons/astro_icon/{ moon_icon }',
+        'moon_type': astro_dic['moon']['type'],
+        'moon_percent': astro_dic['moon']['percent'],
     }
 
     beeprint.pp(content)

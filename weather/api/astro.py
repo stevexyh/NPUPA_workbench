@@ -78,16 +78,20 @@ class Astronomy(object):
 
         moon_info = {}
         moon_info['phase'] = moon.phase()
-        moon_info['percent'] = moon_info['phase'] / 28
+        moon_info['percent'] = int((moon_info['phase'] if moon_info['phase'] <= 14 else (28 - moon_info['phase'])) / 14 * 100)
 
         if moon_info['phase'] < 7:
             moon_info['type'] = '新月'
+            moon_info['icon'] = '10'
         elif moon_info['phase'] < 14:
             moon_info['type'] = '上弦月'
+            moon_info['icon'] = '25'
         elif moon_info['phase'] < 21:
             moon_info['type'] = '满月'
+            moon_info['icon'] = '100'
         else:
             moon_info['type'] = '下弦月'
+            moon_info['icon'] = '75'
 
         return moon_info
 
