@@ -72,6 +72,7 @@ def download_file(request):
 
 def list_files():
     '''获取目录下所有文件信息'''
+
     global FILE_LIST
     FILE_LIST.clear()
     try:
@@ -83,12 +84,16 @@ def list_files():
 
     def is_ignored(filename):
         '''排除.fileIgnore列表中的文件'''
-        with open(FILE_IGNORE, 'r') as file_ignore:
-            ignored_files = file_ignore.read().splitlines()
-            return True if filename in ignored_files else False
+        try:
+            with open(FILE_IGNORE, 'r') as file_ignore:
+                ignored_files = file_ignore.read().splitlines()
+                return True if filename in ignored_files else False
+        except FileNotFoundError as err:
+            return False
 
     def get_filesize(file_path):
         '''获取文件的大小,结果保留两位小数'''
+
         fsize = os.path.getsize(file_path)
         level = 1000
 
