@@ -55,6 +55,13 @@ def home(request):
     weather_code = weather_now['cond_code']
     weather_icon = weather_code + '.png'
 
+    if aqi_now['qlty'] == '优':
+        aqi_color = 'btn btn-outline-success'
+    elif aqi_now['qlty'] == '良':
+        aqi_color = 'btn btn-outline-warning'
+    else:
+        aqi_color = 'btn btn-outline-danger'
+
     content = {
         'ip': ip_addr,
         'location': weather_dic['city'],
@@ -66,9 +73,11 @@ def home(request):
         'weather_icon': f'/static/weather/icons/weather_icon/{ weather_icon }',
         'weather_cond': weather_dic['res_dict']['now']['cond_txt'],
         'weather_temp': weather_now['tmp'] + ' °C',
+        'weather_update': weather_dic['res_dict']['update']['loc'],
 
-        'aqi':aqi_now['aqi'],
-        'aqi_qlty':aqi_now['qlty'],
+        'aqi': aqi_now['aqi'],
+        'aqi_qlty': aqi_now['qlty'],
+        'aqi_color': aqi_color,
 
         'sun_rise': astro_dic['sun']['sunrise'].strftime('%H:%M'),
         'sun_set': astro_dic['sun']['sunset'].strftime('%H:%M'),
