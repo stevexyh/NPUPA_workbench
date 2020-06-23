@@ -13,8 +13,8 @@
 ---------------------------------------------
 '''
 
-import beeprint
 import ipaddress
+import beeprint
 from django.shortcuts import render
 from weather.api.get_info import get_info
 
